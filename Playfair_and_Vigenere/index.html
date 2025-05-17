@@ -1,0 +1,447 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Fira+Code:wght@300..700&display=swap" rel="stylesheet">
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Rubik+Wet+Paint&display=swap" rel="stylesheet">
+
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+    <link rel="stylesheet" href="./css/style.css">
+    <script src="https://cdn.jsdelivr.net/npm/lodash@4.17.21/lodash.min.js"></script>
+
+    <title>Playfair Cipher</title>
+</head>
+
+<body>
+    <main>
+
+        <div class="d-flex justify-content-center">
+            <select name="" id="algo_select" class="btn btn-secondary btn-lg">
+                <option value="PLAYFAIR">Playfair Cipher</option>
+                <option value="VIGENERE">Vigenere Cipher</option>
+            </select>
+        </div>
+
+        <header>
+            <h1 id="title">Playfair Cipher</h1>
+        </header>
+
+        <section id="playfair" class="">
+            <ul class="nav nav-pills nav-light mb-3 justify-content-center gap-4" id="pills-tab" role="tablist">
+                <li class="nav-item flex-grow-1" role="presentation">
+                    <button class="button active w-100" id="pills-home-tab" data-bs-toggle="pill"
+                        data-bs-target="#pills-home" type="button" role="tab" aria-controls="pills-home"
+                        aria-selected="true">Playfair Cipher Details</button>
+                </li>
+                <li class="nav-item flex-grow-1" role="presentation">
+                    <button class="button w-100" id="pills-profile-tab" data-bs-toggle="pill"
+                        data-bs-target="#pills-profile" type="button" role="tab" aria-controls="pills-profile"
+                        aria-selected="false">Encoding</button>
+                </li>
+                <li class="nav-item flex-grow-1" role="presentation">
+                    <button class="button w-100" id="pills-contact-tab" data-bs-toggle="pill"
+                        data-bs-target="#pills-contact" type="button" role="tab" aria-controls="pills-contact"
+                        aria-selected="false">Decoding</button>
+                </li>
+            </ul>
+            <div class="tab-content" id="pills-tabContent">
+                <div class="tab-pane fade show active" id="pills-home" role="tabpanel" aria-labelledby="pills-home-tab">
+                    <div class="content_box">
+                        <div class="mx-5">
+                            <h2><b>
+                                    <>Playfair Cipher:
+                                </b></h2>
+                            <p>The Playfair cipher is a manual symmetric encryption technique that encrypts digraphs (pairs of letters) using a 5x5 matrix of letters based on a keyword.equipment.</p>
+                            
+                        </div>
+                    </div>
+                </div>
+
+                <div class="tab-pane fade" id="pills-profile" role="tabpanel" aria-labelledby="pills-profile-tab">
+                    <div class="content_box">
+                        <div class="mx-5">
+                            <h2><b>
+                                    <>Plafair Cipher Encryption:
+                                </b></h2>
+                            <p>
+                                Note: Before Encryption, please read Rules and process carefully.
+                            </p>
+                            <input type="text" id="key" name="key" class="form-control"
+                                placeholder="Enter key here ... Ex: ENCRYPTION">
+                            <br>
+                            <button onclick="generateGrid();" type="button" class="button">Click to Generate
+                                Grid</button>
+                            <button onclick="resetPlayfairEncript();" type="button" class="button">Refresh</button>
+                            <br><br>
+                            <h2><b>
+                                    <>5x5 Grid:
+                                </b></h2>
+                            <table id="main_grid" class="table table-bordered border-success">
+                                <tr id="row1">
+                                    <td id="col11">A</td>
+                                    <td id="col12">B</td>
+                                    <td id="col13">C</td>
+                                    <td id="col14">D</td>
+                                    <td id="col15">E</td>
+                                </tr>
+                                <tr id="row2">
+                                    <td id="col21">F</td>
+                                    <td id="col22">G</td>
+                                    <td id="col23">H</td>
+                                    <td id="col24">I/J</td>
+                                    <td id="col25">K</td>
+                                </tr>
+                                <tr id="row3">
+                                    <td id="col31">L</td>
+                                    <td id="col32">M</td>
+                                    <td id="col33">N</td>
+                                    <td id="col34">O</td>
+                                    <td id="col35">P</td>
+                                </tr>
+                                <tr id="row4">
+                                    <td id="col41">Q</td>
+                                    <td id="col42">R</td>
+                                    <td id="col43">S</td>
+                                    <td id="col44">T</td>
+                                    <td id="col45">U</td>
+                                </tr>
+                                <tr id="row5">
+                                    <td id="col51">V</td>
+                                    <td id="col52">W</td>
+                                    <td id="col53">X</td>
+                                    <td id="col54">Y</td>
+                                    <td id="col55">Z</td>
+                                </tr>
+                            </table>
+                            <br>
+                            <input type="text" class="form-control" id="plain_text" name="plain_text"
+                                placeholder="Enter plain text...">
+                            <br>
+                            <button type="button" class="button" onclick="ptFixer();">Start Encryption</button>
+                            <br><br>
+                            <h2><b>
+                                    <>Plaintext Pair:
+                                </b></h2>
+                            <p id="plain_text_display_area"></p>
+
+                            <div id="grids"></div>
+                            <div id="cipherText"></div>
+                            <br><button class="button" onclick="copyCipherText()">Copy Encrypted Text</button>
+                        </div>
+                    </div>
+                </div>
+                <div class="tab-pane fade" id="pills-contact" role="tabpanel" aria-labelledby="pills-contact-tab">
+                    <div class="content_box">
+                        <div class="mx-5">
+                            <h2><b>
+                                    <>Plafair Cipher Decryption:
+                                </b></h2>
+                            <p>
+                                Note: Before Decryption, please read Rules and process carefully.
+                            </p>
+                            <input type="text" id="dec_key" name="dec_key" class="form-control"
+                                placeholder="Enter key here ... Ex: DECRYPTION">
+                            <br>
+                            <button onclick="generateGridForDec();" type="button" class="button">Click to Generate
+                                Grid</button>
+                            <button onclick="resetPlayfairDecript();" type="button" class="button">Refresh</button>
+                            <br><br>
+                            <h2><b>
+                                    <>5x5 Grid:
+                                </b></h2>
+                            <table id="main_gridForDec" class="table table-bordered border-success">
+                                <tr id="dec_row1">
+                                    <td id="dec_col11">A</td>
+                                    <td id="dec_col12">B</td>
+                                    <td id="dec_col13">C</td>
+                                    <td id="dec_col14">D</td>
+                                    <td id="dec_col15">E</td>
+                                </tr>
+                                <tr id="dec_row2">
+                                    <td id="dec_col21">F</td>
+                                    <td id="dec_col22">G</td>
+                                    <td id="dec_col23">H</td>
+                                    <td id="dec_col24">I/J</td>
+                                    <td id="dec_col25">K</td>
+                                </tr>
+                                <tr id="dec_row3">
+                                    <td id="dec_col31">L</td>
+                                    <td id="dec_col32">M</td>
+                                    <td id="dec_col33">N</td>
+                                    <td id="dec_col34">O</td>
+                                    <td id="dec_col35">P</td>
+                                </tr>
+                                <tr id="dec_row4">
+                                    <td id="dec_col41">Q</td>
+                                    <td id="dec_col42">R</td>
+                                    <td id="dec_col43">S</td>
+                                    <td id="dec_col44">T</td>
+                                    <td id="dec_col45">U</td>
+                                </tr>
+                                <tr id="dec_row5">
+                                    <td id="dec_col51">V</td>
+                                    <td id="dec_col52">W</td>
+                                    <td id="dec_col53">X</td>
+                                    <td id="dec_col54">Y</td>
+                                    <td id="dec_col55">Z</td>
+                                </tr>
+                            </table>
+                            <br>
+                            <input type="text" class="form-control" id="cipher_text" name="cipher_text"
+                                placeholder="Enter Cipher text...">
+                            <br>
+                            <button type="button" class="button" onclick="ptFixerForDec();">Start Decryption</button>
+                            <br><br>
+                            <h2><b>
+                                    <>Cipertext Pair:
+                                </b></h2>
+                            <p id="cipher_text_display_area"></p>
+
+                            <div id="gridsForDec"></div>
+                            <div id="plainText"></div>
+                            <br><button class="button" onclick="copyPlainText()">Copy Decrypted Text</button>
+
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="vigenere" class="d-none">
+            <ul class="nav nav-pills nav-light mb-3 justify-content-center gap-4" id="pills-tab" role="tablist">
+                <li class="nav-item flex-grow-1" role="presentation">
+                    <button class="button active w-100" id="pills-details-tab" data-bs-toggle="pill"
+                        data-bs-target="#pills-details" type="button" role="tab" aria-controls="pills-details"
+                        aria-selected="true">Vigenere Cipher Details</button>
+                </li>
+                <li class="nav-item flex-grow-1" role="presentation">
+                    <button class="button w-100" id="pills-encoding-tab" data-bs-toggle="pill"
+                        data-bs-target="#pills-encoding" type="button" role="tab" aria-controls="pills-encoding"
+                        aria-selected="false">Encoding</button>
+                </li>
+                <li class="nav-item flex-grow-1" role="presentation">
+                    <button class="button w-100" id="pills-decoding-tab" data-bs-toggle="pill"
+                        data-bs-target="#pills-decoding" type="button" role="tab" aria-controls="pills-decoding"
+                        aria-selected="false">Decoding</button>
+                </li>
+            </ul>
+            <div class="tab-content" id="pills-tabContent">
+                <div class="tab-pane fade show active" id="pills-details" role="tabpanel"
+                    aria-labelledby="pills-details-tab">
+                    <div class="content_box">
+                        <div class="mx-5">
+                            <!-- Vigenere Cipher Details Content -->
+                            <h2><b>
+                                    <>Vigenere Cipher:
+                                </b></h2>
+                            <p>The Vigenère cipher is a polyalphabetic substitution cipher that uses a keyword to shift letters in the plaintext by varying amounts.
+                            </p>
+                            
+                        </div>
+                    </div>
+                </div>
+                <div class="tab-pane fade" id="pills-encoding" role="tabpanel" aria-labelledby="pills-encoding-tab">
+                    <div class="content_box">
+                        <div class="mx-5">
+                            <!-- Vigenere Cipher Encoding Content -->
+                            <h2><b>Vigenere Cipher Encryption:</b></h2>
+                            <p>Note: Before Encryption, please read Rules and process carefully.</p>
+                            <input type="text" id="plaintext_input" class="form-control"
+                                placeholder="Enter plaintext here ... Ex: HELLO">
+                            <input type="text" id="encryption_key" class="form-control"
+                                placeholder="Enter key here ... Ex: KEY">
+                            <br>
+                            <button onclick="vigenereEncryptAndDisplay();" type="button" class="button">Start
+                                Encryption</button>
+                            <button onclick="resetOutput();" type="button" class="button">Refresh</button>
+                            <br><br>
+                            <!-- Container to display the dynamic table with encryption results -->
+
+                            <table id="main_grid" class="table table-bordered border-success">
+                                <tr id="row1" class="GlassEffect">
+                                    <td id="col11">0</td>
+                                    <td id="col12">1</td>
+                                    <td id="col13">2</td>
+                                    <td id="col14">3</td>
+                                    <td id="col15">4</td>
+                                    <td id="col16">5</td>
+                                    <td id="col21">6</td>
+                                    <td id="col22">7</td>
+                                    <td id="col23">8</td>
+                                    <td id="col24">9</td>
+                                    <td id="col25">10</td>
+                                    <td id="col26">11</td>
+                                    <td id="col31">12</td>
+                                </tr>
+                                <tr id="row2" class="LetterEffect">
+                                    <td id="col11">A</td>
+                                    <td id="col12">B</td>
+                                    <td id="col13">C</td>
+                                    <td id="col14">D</td>
+                                    <td id="col15">E</td>
+                                    <td id="col16">F</td>
+                                    <td id="col21">G</td>
+                                    <td id="col22">H</td>
+                                    <td id="col23">I</td>
+                                    <td id="col24">J</td>
+                                    <td id="col25">K</td>
+                                    <td id="col26">L</td>
+                                    <td id="col31">M</td>
+                                </tr>
+                                <tr id="row3" class="GlassEffect">
+                                    <td id="col11">13</td>
+                                    <td id="col12">14</td>
+                                    <td id="col13">15</td>
+                                    <td id="col14">16</td>
+                                    <td id="col15">17</td>
+                                    <td id="col16">18</td>
+                                    <td id="col21">19</td>
+                                    <td id="col22">20</td>
+                                    <td id="col23">21</td>
+                                    <td id="col24">22</td>
+                                    <td id="col25">23</td>
+                                    <td id="col26">24</td>
+                                    <td id="col31">25</td>
+                                </tr>
+                                <tr id="row4" class="LetterEffect">
+                                    <td id="col32">N</td>
+                                    <td id="col33">O</td>
+                                    <td id="col34">P</td>
+                                    <td id="col35">Q</td>
+                                    <td id="col36">R</td>
+                                    <td id="col41">S</td>
+                                    <td id="col42">T</td>
+                                    <td id="col43">U</td>
+                                    <td id="col44">V</td>
+                                    <td id="col45">W</td>
+                                    <td id="col46">X</td>
+                                    <td id="col54">Y</td>
+                                    <td id="col55">Z</td>
+                                </tr>
+                            </table>
+                            <h2><b>Encrypted Text:</b></h2>
+                            <div id="tableContainer"></div>
+                            <p id="encrypted_text_display_area"></p>
+                            <div id="cipherTextVigenereEnc"></div><br>
+                            <button class="button" onclick="copyToClipboard(true)">Copy Encrypted Text</button>
+
+                        </div>
+                    </div>
+                </div>
+                <div class="tab-pane fade" id="pills-decoding" role="tabpanel" aria-labelledby="pills-decoding-tab">
+                    <div class="content_box">
+                        <div class="mx-5">
+                            <!-- Vigenere Cipher Decoding Content -->
+                            <h2><b>Vigenere Cipher Decryption:</b></h2>
+                            <p>Note: Before decryption, please read rules and process carefully.</p>
+                            <input type="text" id="cipher_text_input" class="form-control"
+                                placeholder="Enter ciphertext here ... Ex: RCLLE">
+                            <input type="text" id="decryption_key" class="form-control"
+                                placeholder="Enter key here ... Ex: KEY">
+                            <br>
+                            <button onclick="vigenereDecryptAndDisplay();" type="button" class="button">Start
+                                Decryption</button>
+                            <button onclick="resetOutput();" type="button" class="button">Refresh</button>
+                            <br>
+                            <br>
+                            <table id="main_grid" class="table table-bordered border-success">
+                                <tr id="row1" class="GlassEffect">
+                                    <td id="col11">0</td>
+                                    <td id="col12">1</td>
+                                    <td id="col13">2</td>
+                                    <td id="col14">3</td>
+                                    <td id="col15">4</td>
+                                    <td id="col16">5</td>
+                                    <td id="col21">6</td>
+                                    <td id="col22">7</td>
+                                    <td id="col23">8</td>
+                                    <td id="col24">9</td>
+                                    <td id="col25">10</td>
+                                    <td id="col26">11</td>
+                                    <td id="col31">12</td>
+                                </tr>
+                                <tr id="row2" class="LetterEffect">
+                                    <td id="col11">A</td>
+                                    <td id="col12">B</td>
+                                    <td id="col13">C</td>
+                                    <td id="col14">D</td>
+                                    <td id="col15">E</td>
+                                    <td id="col16">F</td>
+                                    <td id="col21">G</td>
+                                    <td id="col22">H</td>
+                                    <td id="col23">I</td>
+                                    <td id="col24">J</td>
+                                    <td id="col25">K</td>
+                                    <td id="col26">L</td>
+                                    <td id="col31">M</td>
+                                </tr>
+                                <tr id="row3" class="GlassEffect">
+                                    <td id="col11">13</td>
+                                    <td id="col12">14</td>
+                                    <td id="col13">15</td>
+                                    <td id="col14">16</td>
+                                    <td id="col15">17</td>
+                                    <td id="col16">18</td>
+                                    <td id="col21">19</td>
+                                    <td id="col22">20</td>
+                                    <td id="col23">21</td>
+                                    <td id="col24">22</td>
+                                    <td id="col25">23</td>
+                                    <td id="col26">24</td>
+                                    <td id="col31">25</td>
+                                </tr>
+                                <tr id="row4" class="LetterEffect">
+                                    <td id="col32">N</td>
+                                    <td id="col33">O</td>
+                                    <td id="col34">P</td>
+                                    <td id="col35">Q</td>
+                                    <td id="col36">R</td>
+                                    <td id="col41">S</td>
+                                    <td id="col42">T</td>
+                                    <td id="col43">U</td>
+                                    <td id="col44">V</td>
+                                    <td id="col45">W</td>
+                                    <td id="col46">X</td>
+                                    <td id="col54">Y</td>
+                                    <td id="col55">Z</td>
+                                </tr>
+                            </table>
+
+                            <br><br>
+                            <h2><b>Decrypted Text:</b></h2>
+                            <div id="decryptionTableContainer"></div>
+                            <p id="decrypted_text_display_area"></p>
+                            <div id="cipherTextVigenereDec"></div><br>
+                            <button class="button" onclick="copyToClipboard(false)">Copy Decrypted Text</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        &copy; 2025 | Developed by Kawsar Ahamed, Maharun Nesa, & Jubayerul Hasan
+    </footer>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM"
+        crossorigin="anonymous"></script>
+    <Script src="./js/app.js"></Script>
+    <script src="./js/playfair_enc.js"></script>
+    <script src="./js/playfair_dec.js"></script>
+    <script src="./js/vigenere.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.3.1/jspdf.umd.min.js"></script>
+</body>
+
+</html>

@@ -1,0 +1,152 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  color: #f1f5f9;
+  font-family: "Fira Code", monospace;
+}
+
+body {
+  background: linear-gradient(135deg, #0f172a, #1e293b);
+  background-attachment: fixed;
+  padding: 0 1rem;
+  margin-top: 3rem;
+}
+
+header, footer {
+  text-align: center;
+  margin: 3rem 0;
+  color: #38bdf8;
+}
+
+h1 {
+  font-family: "Rubik Wet Paint", system-ui;
+  font-weight: 400;
+  font-size: 80px;
+  color: #38bdf8;
+}
+
+main {
+  max-width: 1000px;
+  margin: 0 auto;
+  background: rgba(30, 41, 59, 0.7);
+  backdrop-filter: blur(14px);
+  border-radius: 1rem;
+  padding: 1rem;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.4);
+  border: 1px solid rgba(148, 163, 184, 0.2);
+}
+
+.content_box {
+  max-width: 800px;
+  margin: 40px auto 0;
+  background: rgba(15, 23, 42, 0.7);
+  backdrop-filter: blur(12px);
+  border-radius: 1rem;
+  padding: 1rem;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
+  border: 1px solid rgba(148, 163, 184, 0.2);
+}
+
+/* Button */
+.button {
+  padding: 0.6em 2em;
+  border: none;
+  outline: none;
+  color: #fff;
+  background: #0f172a;
+  cursor: pointer;
+  position: relative;
+  z-index: 0;
+  border-radius: 10px;
+  user-select: none;
+}
+
+.button:before {
+  content: "";
+  background: linear-gradient(
+    45deg,
+    #ff0000,
+    #ff7300,
+    #fffb00,
+    #48ff00,
+    #00ffd5,
+    #002bff,
+    #7a00ff,
+    #ff00c8,
+    #ff0000
+  );
+  position: absolute;
+  top: -2px;
+  left: -2px;
+  background-size: 400%;
+  z-index: -1;
+  filter: blur(5px);
+  width: calc(100% + 4px);
+  height: calc(100% + 4px);
+  animation: glowing-button 20s linear infinite;
+  border-radius: 10px;
+}
+
+@keyframes glowing-button {
+  0% {
+    background-position: 0 0;
+  }
+  50% {
+    background-position: 400% 0;
+  }
+  100% {
+    background-position: 0 0;
+  }
+}
+
+.button:after {
+  z-index: -1;
+  content: "";
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  background: #1e293b;
+  left: 0;
+  top: 0;
+  border-radius: 10px;
+}
+
+.button:hover::after,
+.button.active::after {
+  background-color: rgba(255, 255, 255, 0.1);
+}
+
+/* Effects */
+.GlassEffect {
+  background: rgba(30, 41, 59, 0.6);
+  border-radius: 16px;
+  box-shadow: 0 4px 30px rgba(0, 0, 0, 0.3);
+  backdrop-filter: blur(6px);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+}
+
+.LetterEffect {
+  background: rgba(71, 85, 105, 0.3);
+  border-radius: 16px;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2);
+  backdrop-filter: blur(4px);
+  border: 1px solid rgba(255, 255, 255, 0.15);
+}
+
+.textareaDesign {
+  border-radius: 8px;
+  padding: 12px;
+  background-color: #1e293b;
+  color: #e2e8f0;
+  border: 1px solid #334155;
+}
+body{
+    background-color: #0008;
+    background-image: url(../image/bg.jpg);
+    background-blend-mode: multiply;
+    background-size: cover;
+    background-attachment: fixed;
+    padding: 0 0.8rem;
+    margin-top: 3rem;
+}
